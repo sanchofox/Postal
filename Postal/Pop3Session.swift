@@ -9,41 +9,115 @@
 import Swift
 import libetpan
 
-final class Pop3Session {
-    public func fake() {
-        /*
-        mailpop3
-        mailpop3_capa
-        mailpop3_free(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_new(<#T##pop3_progr_rate: Int##Int#>, <#T##pop3_progr_fun: ((Int, Int) -> Void)!##((Int, Int) -> Void)!##(Int, Int) -> Void#>)
-        mailpop3_noop(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_quit(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_rset(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_stls(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_capa(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<clist>?>!##UnsafeMutablePointer<UnsafeMutablePointer<clist>?>!#>)
-        mailpop3_dele(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##indx: UInt32##UInt32#>)
-        mailpop3_list(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<carray>?>!##UnsafeMutablePointer<UnsafeMutablePointer<carray>?>!#>)
-        mailpop3_msg_info
-        mailpop3_pass(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##password: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_stat(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<mailpop3_stat_response>?>!##UnsafeMutablePointer<UnsafeMutablePointer<mailpop3_stat_response>?>!#>)
-        mailpop3_user(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##user: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_apop(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##user: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##password: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_login(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##user: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##password: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_retr(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##indx: UInt32##UInt32#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!##UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!#>, <#T##result_len: UnsafeMutablePointer<Int>!##UnsafeMutablePointer<Int>!#>)
-        mailpop3_top(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##indx: UInt32##UInt32#>, <#T##count: UInt32##UInt32#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!##UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!#>, <#T##result_len: UnsafeMutablePointer<Int>!##UnsafeMutablePointer<Int>!#>)
-        mailpop3_connect(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##s: UnsafeMutablePointer<mailstream>!##UnsafeMutablePointer<mailstream>!#>)
-        mailpop3_top_free(<#T##str: UnsafeMutablePointer<Int8>!##UnsafeMutablePointer<Int8>!#>)
-        mailpop3_header(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##indx: UInt32##UInt32#>, <#T##result: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!##UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!#>, <#T##result_len: UnsafeMutablePointer<Int>!##UnsafeMutablePointer<Int>!#>)
-        mailpop3_retr_free(<#T##str: UnsafeMutablePointer<Int8>!##UnsafeMutablePointer<Int8>!#>)
-        mailpop3_stat_response
-        mailpop3_get_timeout(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>)
-        mailpop3_header_free(<#T##str: UnsafeMutablePointer<Int8>!##UnsafeMutablePointer<Int8>!#>)
-        mailpop3_auth(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##auth_type: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##server_fqdn: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##local_ip_port: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##remote_ip_port: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##login: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##auth_name: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##password: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##realm: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_login_apop(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##user: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##password: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>)
-        mailpop3_set_logger(<#T##session: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##logger: ((UnsafeMutablePointer<mailpop3>?, Int32, UnsafePointer<Int8>?, Int, UnsafeMutableRawPointer?) -> Void)!##((UnsafeMutablePointer<mailpop3>?, Int32, UnsafePointer<Int8>?, Int, UnsafeMutableRawPointer?) -> Void)!##(UnsafeMutablePointer<mailpop3>?, Int32, UnsafePointer<Int8>?, Int, UnsafeMutableRawPointer?) -> Void#>, <#T##logger_context: UnsafeMutableRawPointer!##UnsafeMutableRawPointer!#>)
-        mailpop3_set_timeout(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##timeout: time_t##time_t#>)
-        mailpop3_ssl_connect(<#T##f: UnsafeMutablePointer<mailpop3>!##UnsafeMutablePointer<mailpop3>!#>, <#T##server: UnsafePointer<Int8>!##UnsafePointer<Int8>!#>, <#T##port: UInt16##UInt16#>)
-        mailpop3_capa_resp_free(<#T##capa_list: UnsafeMutablePointer<clist>!##UnsafeMutablePointer<clist>!#>)
-        */
+final class Pop3Session: Session {
+    var session: Any
+    var configuration: Configuration
+    
+    var logger: Logger? {
+        didSet {
+            if logger != nil {
+                mailpop3_set_logger(pop3, _logger, Unmanaged.passRetained(self).toOpaque())
+            } else {
+                mailpop3_set_logger(pop3, nil, nil)
+            }
+        }
     }
+    
+    private var pop3: UnsafeMutablePointer<mailpop3> {
+        get {
+            return session as! UnsafeMutablePointer<mailpop3>
+        }
+    }
+    
+    private var pop3Configuration: Pop3Configuration {
+        get {
+            return configuration as! Pop3Configuration
+        }
+    }
+    
+    private init(configuration: Configuration) {
+        self.session = mailpop3_new(0, nil) as Any
+        self.configuration = configuration
+        
+        let _bodyProgress: Progress = { _,_,_  in }
+        mailpop3_set_progress_callback(pop3, _bodyProgress, nil)
+    }
+    
+    convenience init(pop3configuration: Pop3Configuration) {
+        self.init(configuration: pop3configuration)
+    }
+    
+    deinit {
+        if let stream = pop3.pointee.pop3_stream {
+            mailstream_close(stream)
+            pop3.pointee.pop3_stream = nil
+        }
+        mailpop3_free(pop3)
+    }
+
+    func connect(timeout: TimeInterval) throws {
+        mailpop3_set_timeout(pop3, Int(timeout))
+
+        switch configuration.connectionType {
+        case .clear:
+            try mailpop3_socket_connect(pop3, configuration.hostname, configuration.port).toPop3Error?.check()
+            
+        case .tls:
+            try mailpop3_ssl_connect(pop3, configuration.hostname, configuration.port).toPop3Error?.check()
+            
+            try checkCertificateIfNeeded()
+            
+        case .startTLS:
+            try mailpop3_socket_connect(pop3, configuration.hostname, configuration.port).toPop3Error?.check()
+            
+            try mailpop3_socket_starttls(pop3).toPop3Error?.check()
+            
+            try checkCertificateIfNeeded()
+            
+        }
+        
+        let low = mailstream_get_low(pop3.pointee.pop3_stream)
+        
+        let identifier = "\(configuration.login)@\(configuration.hostname):\(configuration.port)"
+        mailstream_low_set_identifier(low, identifier.unreleasedUTF8CString)
+    }
+    
+    func login() throws {
+        let result: Int32 = mailpop3_login(pop3, configuration.login, pop3Configuration.password)
+        
+        try result.toPop3Error?.enrich { return .login(description: String(cString: pop3.pointee.pop3_response)) }.check()
+    }
+    
+    func configure() throws {
+        // Nothing to do.
+    }
+    
+    // MARK: - Utils
+    
+    fileprivate let _logger: Pop3Logger = { (_: UnsafeMutablePointer<mailpop3>?, logType: Int32, buffer: UnsafePointer<CChar>?, size: Int, context: UnsafeMutableRawPointer?) in
+        guard
+            size > 0,
+            let context = context,
+            let logType = ConnectionLogType(rawType: logType),
+            let buffer = buffer
+            else { return }
+        
+        let session = Unmanaged<Pop3Session>.fromOpaque(context).takeUnretainedValue()
+        
+        let data = Data(bytesNoCopy: UnsafeMutableRawPointer(mutating: buffer), count: size, deallocator: .none)
+        
+        if let str = String(data: data, encoding: .utf8), !str.isEmpty {
+            session.logger?("\(logType): \(str)")
+        } else {
+            session.logger?("\(logType)")
+        }
+    }
+    
+    fileprivate func checkCertificateIfNeeded() throws{
+        guard configuration.checkCertificateEnabled else { return }
+        guard checkCertificate(pop3.pointee.pop3_stream, hostname: configuration.hostname) else {
+            throw Pop3Error.certificate.asPostalError
+        }
+    }
+
 }

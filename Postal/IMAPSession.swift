@@ -25,13 +25,23 @@
 import Swift
 import libetpan
 
-private typealias Progress = @convention(c) (Int, Int, UnsafeMutableRawPointer?) -> Void
 
-public typealias ProgressHandler = (_ current: Int, _ maximum: Int) -> ()
 
-final class IMAPSession {
-    let configuration: ImapConfiguration
-    let imap: UnsafeMutablePointer<mailimap>
+final class IMAPSession: Session {
+    var session: Any
+    var configuration: Configuration
+    
+    var imapConfiguration: ImapConfiguration {
+        get {
+            return configuration as! ImapConfiguration
+        }
+    }
+    
+    var imap: UnsafeMutablePointer<mailimap> {
+        get {
+            return session as! UnsafeMutablePointer<mailimap>
+        }
+    }
     
     private(set) var capabilities: IMAPCapability = []
     private(set) var defaultNamespace: IMAPNamespace? = nil
@@ -68,14 +78,18 @@ final class IMAPSession {
         }
     }
     
-    init(configuration: ImapConfiguration) {
-        self.imap = mailimap_new(0, nil)
+    private init(configuration: Configuration) {
+        self.session = mailimap_new(0, nil) as Any
         self.configuration = configuration
         
         // We need to give the progress callbacks to stream values to end user.
         let _bodyProgress: Progress = { _,_,_  in }
         let _itemsProgress: Progress = { _,_,_  in }
         mailimap_set_progress_callback(imap, _bodyProgress, _itemsProgress, nil)
+    }
+    
+    convenience init(imapConfiguration: ImapConfiguration) {
+        self.init(configuration: imapConfiguration)
     }
     
     deinit {
@@ -120,7 +134,7 @@ final class IMAPSession {
             try mailimap_capability(imap, &capabilityData).toIMAPError?.check()
             mailimap_capability_data_free(capabilityData)
         }
-        
+
         storeCapabilities()
     }
     
@@ -157,7 +171,7 @@ final class IMAPSession {
         // TODO: maybe create a reset method and find the best time to call it
         let result: Int32
         
-        switch configuration.password {
+        switch imapConfiguration.password {
         case .accessToken(let accessToken):
             result = mailimap_oauth2_authenticate(imap, configuration.login, accessToken)
         case .plain(let password):

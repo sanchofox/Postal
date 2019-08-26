@@ -245,7 +245,7 @@ extension IMAPSession {
     }
     
     func search(_ folder: String, filter: SearchFilter) throws -> IndexSet {
-        let key = filter.unreleasedImapSearchKey(configuration)
+        let key = filter.unreleasedImapSearchKey(imapConfiguration)
         defer { mailimap_search_key_free(key) }
         
         try select(folder)

@@ -47,7 +47,7 @@ open class Postal {
         queue.qualityOfService = .utility
         queue.maxConcurrentOperationCount = 1
         self.configuration = configuration
-        session = IMAPSession(configuration: configuration)
+        session = IMAPSession(imapConfiguration: configuration)
     }
 }
 

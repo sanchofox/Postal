@@ -30,32 +30,22 @@ public enum PasswordType {
     case accessToken(String)
 }
 
-/// The connection type on the server
-public enum ConnectionType {
-    /// Communication not encryptet
-    case clear
-    /// Encrypted communication
-    case tls
-    /// Take an existing insecure connection and upgrade it to a secure one.
-    case startTLS
-}
-
 /// The configuration of the connection
-public struct ImapConfiguration {
+public struct ImapConfiguration: Configuration {
     /// The hostname of the IMAP server
-    public let hostname: String
+    public private(set) var hostname: String
     /// The port of the IMAP server
-    public let port: UInt16
+    public private(set) var port: UInt16
     /// The login name
-    public let login: String
+    public private(set) var login: String
     /// The password or the token of the connection
     public let password: PasswordType
     /// The connection type (secured or not)
-    public let connectionType: ConnectionType
+    public private(set) var connectionType: ConnectionType
     /// Check if the certificate is enabled
-    public let checkCertificateEnabled: Bool
+    public private(set) var checkCertificateEnabled: Bool
     /// The batch size of heavy requests
-    public let batchSize: Int
+    public private(set) var batchSize: Int
     /// The spam folder name
     public let spamFolderName: String
     

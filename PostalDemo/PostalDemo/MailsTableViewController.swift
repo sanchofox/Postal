@@ -10,7 +10,7 @@ import UIKit
 import Postal
 
 class MailsTableViewController: UITableViewController {
-    var configuration: Configuration!
+    var configuration: ImapConfiguration!
     
     fileprivate lazy var postal: Postal = Postal(configuration: self.configuration)
     fileprivate var messages: [FetchResult] = []

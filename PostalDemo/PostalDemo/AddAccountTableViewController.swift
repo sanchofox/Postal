@@ -26,7 +26,7 @@ enum MailProvider: Int {
         }
     }
     
-    var preConfiguration: Configuration? {
+    var preConfiguration: ImapConfiguration? {
         switch self {
         case .icloud: return .icloud(login: "", password: "")
         case .google: return .gmail(login: "", password: .plain(""))

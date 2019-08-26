@@ -11,6 +11,14 @@
 		084D656B2313D49800FCC040 /* Pop3Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D656A2313D49800FCC040 /* Pop3Session.swift */; };
 		084D656C2313D49E00FCC040 /* Pop3Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D656A2313D49800FCC040 /* Pop3Session.swift */; };
 		084D656D2313D4A500FCC040 /* Pop3Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D65662313D40A00FCC040 /* Pop3Configuration.swift */; };
+		0875B7232313DA8E004B0E81 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7222313DA8E004B0E81 /* Types.swift */; };
+		0875B7242313DA8E004B0E81 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7222313DA8E004B0E81 /* Types.swift */; };
+		0875B7262313DB46004B0E81 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7252313DB46004B0E81 /* Protocols.swift */; };
+		0875B7272313DB46004B0E81 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7252313DB46004B0E81 /* Protocols.swift */; };
+		08C25D7823142F310065F6FB /* Logger+Pop3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7723142F310065F6FB /* Logger+Pop3.swift */; };
+		08C25D7923142F310065F6FB /* Logger+Pop3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7723142F310065F6FB /* Logger+Pop3.swift */; };
+		08C25D7B2314390A0065F6FB /* Pop3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7A2314390A0065F6FB /* Pop3Error.swift */; };
+		08C25D7C2314390A0065F6FB /* Pop3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7A2314390A0065F6FB /* Pop3Error.swift */; };
 		980745411D63311D0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		980745421D6331AC0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		9812C31F1D50959500630D46 /* Postal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9812C31E1D50959500630D46 /* Postal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +164,10 @@
 /* Begin PBXFileReference section */
 		084D65662313D40A00FCC040 /* Pop3Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Configuration.swift; sourceTree = "<group>"; };
 		084D656A2313D49800FCC040 /* Pop3Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Session.swift; sourceTree = "<group>"; };
+		0875B7222313DA8E004B0E81 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		0875B7252313DB46004B0E81 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		08C25D7723142F310065F6FB /* Logger+Pop3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Pop3.swift"; sourceTree = "<group>"; };
+		08C25D7A2314390A0065F6FB /* Pop3Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Error.swift; sourceTree = "<group>"; };
 		980745401D63311D0021D60F /* IMAPSession+List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAPSession+List.swift"; sourceTree = "<group>"; };
 		9812C31C1D50959500630D46 /* Postal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Postal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9812C31E1D50959500630D46 /* Postal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Postal.h; sourceTree = "<group>"; };
@@ -259,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				084D65692313D48C00FCC040 /* Session */,
+				08C25D7A2314390A0065F6FB /* Pop3Error.swift */,
+				08C25D7723142F310065F6FB /* Logger+Pop3.swift */,
 			);
 			name = POP3;
 			sourceTree = "<group>";
@@ -432,6 +446,8 @@
 			isa = PBXGroup;
 			children = (
 				F7F03C681D4BA5A80083397F /* Logger.swift */,
+				0875B7222313DA8E004B0E81 /* Types.swift */,
+				0875B7252313DB46004B0E81 /* Protocols.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -672,8 +688,11 @@
 				9812C32E1D509B6400630D46 /* MessageAttribute+Parsing.swift in Sources */,
 				9812C33A1D509B6400630D46 /* IMAPSession+Fetch.swift in Sources */,
 				F7E884A71D59C7F500D02CC2 /* PostalError.swift in Sources */,
+				0875B7242313DA8E004B0E81 /* Types.swift in Sources */,
 				9812C33B1D509B6400630D46 /* IMAPSession+Search.swift in Sources */,
 				9812C32D1D509B6400630D46 /* Message+Parsing.swift in Sources */,
+				0875B7272313DB46004B0E81 /* Protocols.swift in Sources */,
+				08C25D7923142F310065F6FB /* Logger+Pop3.swift in Sources */,
 				F71325671D50CA84005DFC15 /* ImapConfiguration.swift in Sources */,
 				9812C3301D509B6400630D46 /* MessageHeader+Parsing.swift in Sources */,
 				9812C33F1D509B6900630D46 /* Libetpan+Util.swift in Sources */,
@@ -685,6 +704,7 @@
 				9812C3331D509B6400630D46 /* MailData+Decode.swift in Sources */,
 				9812C3291D509B6400630D46 /* ContentDisposition+Parsing.swift in Sources */,
 				9812C3351D509B6400630D46 /* IMAPCapability.swift in Sources */,
+				08C25D7C2314390A0065F6FB /* Pop3Error.swift in Sources */,
 				980745421D6331AC0021D60F /* IMAPSession+List.swift in Sources */,
 				F7C25FFD1DE4E9EC0021A138 /* IMAPSession+Folder.swift in Sources */,
 				9812C33E1D509B6400630D46 /* MailPart+Enumeration.swift in Sources */,
@@ -726,8 +746,11 @@
 				F7F03EAE1D4BA5A90083397F /* MessageFlags+Parsing.swift in Sources */,
 				F7E884A61D59C7F500D02CC2 /* PostalError.swift in Sources */,
 				F7F03EB61D4BA5A90083397F /* Util.swift in Sources */,
+				0875B7232313DA8E004B0E81 /* Types.swift in Sources */,
 				F7F03C871D4BA5A90083397F /* IMAPSession+Fetch.swift in Sources */,
 				F71325661D50CA84005DFC15 /* ImapConfiguration.swift in Sources */,
+				0875B7262313DB46004B0E81 /* Protocols.swift in Sources */,
+				08C25D7823142F310065F6FB /* Logger+Pop3.swift in Sources */,
 				F7F03EAB1D4BA5A90083397F /* MailPart+Parsing.swift in Sources */,
 				F7F03EA81D4BA5A90083397F /* Logger.swift in Sources */,
 				F7F03C7E1D4BA5A90083397F /* Extension+Parsing.swift in Sources */,
@@ -739,6 +762,7 @@
 				F7F03EA61D4BA5A90083397F /* Libetpan+Util.swift in Sources */,
 				F7F03EB41D4BA5A90083397F /* Postal.swift in Sources */,
 				084D65672313D40A00FCC040 /* Pop3Configuration.swift in Sources */,
+				08C25D7B2314390A0065F6FB /* Pop3Error.swift in Sources */,
 				980745411D63311D0021D60F /* IMAPSession+List.swift in Sources */,
 				F7C25FFC1DE4E9E50021A138 /* IMAPSession+Folder.swift in Sources */,
 				F7F03EB11D4BA5A90083397F /* MimeType+Parsing.swift in Sources */,
