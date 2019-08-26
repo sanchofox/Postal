@@ -30,7 +30,7 @@ private typealias Progress = @convention(c) (Int, Int, UnsafeMutableRawPointer?)
 public typealias ProgressHandler = (_ current: Int, _ maximum: Int) -> ()
 
 final class IMAPSession {
-    let configuration: Configuration
+    let configuration: ImapConfiguration
     let imap: UnsafeMutablePointer<mailimap>
     
     private(set) var capabilities: IMAPCapability = []
@@ -68,7 +68,7 @@ final class IMAPSession {
         }
     }
     
-    init(configuration: Configuration) {
+    init(configuration: ImapConfiguration) {
         self.imap = mailimap_new(0, nil)
         self.configuration = configuration
         

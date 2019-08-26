@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084D65672313D40A00FCC040 /* Pop3Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D65662313D40A00FCC040 /* Pop3Configuration.swift */; };
+		084D656B2313D49800FCC040 /* Pop3Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D656A2313D49800FCC040 /* Pop3Session.swift */; };
+		084D656C2313D49E00FCC040 /* Pop3Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D656A2313D49800FCC040 /* Pop3Session.swift */; };
+		084D656D2313D4A500FCC040 /* Pop3Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D65662313D40A00FCC040 /* Pop3Configuration.swift */; };
 		980745411D63311D0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		980745421D6331AC0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		9812C31F1D50959500630D46 /* Postal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9812C31E1D50959500630D46 /* Postal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,8 +59,8 @@
 		98DB04391CEC7342003CAABB /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DB04381CEC7342003CAABB /* libiconv.tbd */; };
 		F7039DAB1D92B23200132867 /* LibetpanConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7039DAA1D92B23200132867 /* LibetpanConversionTests.swift */; };
 		F7039DAC1D92B23200132867 /* LibetpanConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7039DAA1D92B23200132867 /* LibetpanConversionTests.swift */; };
-		F71325661D50CA84005DFC15 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71325651D50CA84005DFC15 /* Configuration.swift */; };
-		F71325671D50CA84005DFC15 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71325651D50CA84005DFC15 /* Configuration.swift */; };
+		F71325661D50CA84005DFC15 /* ImapConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71325651D50CA84005DFC15 /* ImapConfiguration.swift */; };
+		F71325671D50CA84005DFC15 /* ImapConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71325651D50CA84005DFC15 /* ImapConfiguration.swift */; };
 		F72497431D6228850065D07E /* IMAPSession+Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77337291D60FF610015A1D4 /* IMAPSession+Move.swift */; };
 		F773372A1D60FF610015A1D4 /* IMAPSession+Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77337291D60FF610015A1D4 /* IMAPSession+Move.swift */; };
 		F7C25FFC1DE4E9E50021A138 /* IMAPSession+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C25FFB1DE4E9E50021A138 /* IMAPSession+Folder.swift */; };
@@ -150,6 +154,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		084D65662313D40A00FCC040 /* Pop3Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Configuration.swift; sourceTree = "<group>"; };
+		084D656A2313D49800FCC040 /* Pop3Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Session.swift; sourceTree = "<group>"; };
 		980745401D63311D0021D60F /* IMAPSession+List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAPSession+List.swift"; sourceTree = "<group>"; };
 		9812C31C1D50959500630D46 /* Postal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Postal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9812C31E1D50959500630D46 /* Postal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Postal.h; sourceTree = "<group>"; };
@@ -168,7 +174,7 @@
 		98DB04361CEC7337003CAABB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		98DB04381CEC7342003CAABB /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		F7039DAA1D92B23200132867 /* LibetpanConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibetpanConversionTests.swift; sourceTree = "<group>"; };
-		F71325651D50CA84005DFC15 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F71325651D50CA84005DFC15 /* ImapConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImapConfiguration.swift; sourceTree = "<group>"; };
 		F75DD4741D4BAC1500D40E9C /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77337291D60FF610015A1D4 /* IMAPSession+Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "IMAPSession+Move.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F7C25FFB1DE4E9E50021A138 /* IMAPSession+Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAPSession+Folder.swift"; sourceTree = "<group>"; };
@@ -249,6 +255,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		084D65682313D48200FCC040 /* POP3 */ = {
+			isa = PBXGroup;
+			children = (
+				084D65692313D48C00FCC040 /* Session */,
+			);
+			name = POP3;
+			sourceTree = "<group>";
+		};
+		084D65692313D48C00FCC040 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				084D656A2313D49800FCC040 /* Pop3Session.swift */,
+			);
+			name = Session;
+			sourceTree = "<group>";
+		};
 		9807453F1D6331020021D60F /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +378,8 @@
 			children = (
 				F7F03C741D4BA5A90083397F /* Postal.swift */,
 				F7E884A51D59C7F500D02CC2 /* PostalError.swift */,
-				F71325651D50CA84005DFC15 /* Configuration.swift */,
+				F71325651D50CA84005DFC15 /* ImapConfiguration.swift */,
+				084D65662313D40A00FCC040 /* Pop3Configuration.swift */,
 			);
 			name = Postal;
 			sourceTree = "<group>";
@@ -427,6 +450,7 @@
 				F75DD5561D4BB26700D40E9C /* Shared */,
 				F75DD5571D4BB27800D40E9C /* Security */,
 				F75DD5541D4BB23200D40E9C /* IMF */,
+				084D65682313D48200FCC040 /* POP3 */,
 				F75DD5531D4BB22C00D40E9C /* IMAP */,
 				F75DD5501D4BB19500D40E9C /* Utils */,
 				F75DD5511D4BB1F800D40E9C /* Postal */,
@@ -562,7 +586,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = snips;
+				ORGANIZATIONNAME = Bit4id;
 				TargetAttributes = {
 					9812C31B1D50959500630D46 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -642,6 +666,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084D656D2313D4A500FCC040 /* Pop3Configuration.swift in Sources */,
 				9812C3411D509B6C00630D46 /* Postal.swift in Sources */,
 				9812C3251D509B5300630D46 /* Logger.swift in Sources */,
 				9812C32E1D509B6400630D46 /* MessageAttribute+Parsing.swift in Sources */,
@@ -649,7 +674,7 @@
 				F7E884A71D59C7F500D02CC2 /* PostalError.swift in Sources */,
 				9812C33B1D509B6400630D46 /* IMAPSession+Search.swift in Sources */,
 				9812C32D1D509B6400630D46 /* Message+Parsing.swift in Sources */,
-				F71325671D50CA84005DFC15 /* Configuration.swift in Sources */,
+				F71325671D50CA84005DFC15 /* ImapConfiguration.swift in Sources */,
 				9812C3301D509B6400630D46 /* MessageHeader+Parsing.swift in Sources */,
 				9812C33F1D509B6900630D46 /* Libetpan+Util.swift in Sources */,
 				9812C3321D509B6400630D46 /* MimeType+Parsing.swift in Sources */,
@@ -674,6 +699,7 @@
 				9812C3391D509B6400630D46 /* IMAPNamespace.swift in Sources */,
 				9812C3371D509B6400630D46 /* IMAPFolder.swift in Sources */,
 				9812C3361D509B6400630D46 /* IMAPError.swift in Sources */,
+				084D656C2313D49E00FCC040 /* Pop3Session.swift in Sources */,
 				F72497431D6228850065D07E /* IMAPSession+Move.swift in Sources */,
 				9812C33C1D509B6400630D46 /* IMAPSession.swift in Sources */,
 			);
@@ -701,7 +727,7 @@
 				F7E884A61D59C7F500D02CC2 /* PostalError.swift in Sources */,
 				F7F03EB61D4BA5A90083397F /* Util.swift in Sources */,
 				F7F03C871D4BA5A90083397F /* IMAPSession+Fetch.swift in Sources */,
-				F71325661D50CA84005DFC15 /* Configuration.swift in Sources */,
+				F71325661D50CA84005DFC15 /* ImapConfiguration.swift in Sources */,
 				F7F03EAB1D4BA5A90083397F /* MailPart+Parsing.swift in Sources */,
 				F7F03EA81D4BA5A90083397F /* Logger.swift in Sources */,
 				F7F03C7E1D4BA5A90083397F /* Extension+Parsing.swift in Sources */,
@@ -712,9 +738,11 @@
 				F7F03C851D4BA5A90083397F /* IMAPIdentity.swift in Sources */,
 				F7F03EA61D4BA5A90083397F /* Libetpan+Util.swift in Sources */,
 				F7F03EB41D4BA5A90083397F /* Postal.swift in Sources */,
+				084D65672313D40A00FCC040 /* Pop3Configuration.swift in Sources */,
 				980745411D63311D0021D60F /* IMAPSession+List.swift in Sources */,
 				F7C25FFC1DE4E9E50021A138 /* IMAPSession+Folder.swift in Sources */,
 				F7F03EB11D4BA5A90083397F /* MimeType+Parsing.swift in Sources */,
+				084D656B2313D49800FCC040 /* Pop3Session.swift in Sources */,
 				F7F03C8A1D4BA5A90083397F /* IMFError.swift in Sources */,
 				F7F03C861D4BA5A90083397F /* IMAPNamespace.swift in Sources */,
 				F7F03EAA1D4BA5A90083397F /* MailPart+Enumeration.swift in Sources */,

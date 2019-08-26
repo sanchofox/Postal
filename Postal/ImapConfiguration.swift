@@ -41,7 +41,7 @@ public enum ConnectionType {
 }
 
 /// The configuration of the connection
-public struct Configuration {
+public struct ImapConfiguration {
     /// The hostname of the IMAP server
     public let hostname: String
     /// The port of the IMAP server
@@ -79,14 +79,14 @@ public struct Configuration {
     }
 }
 
-extension Configuration {
+extension ImapConfiguration {
     /// Retrieve pre-configured configuration for Gmail.
     ///
     /// - parameters:
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
-    public static func gmail(login: String, password: PasswordType) -> Configuration {
-        return Configuration(
+    public static func gmail(login: String, password: PasswordType) -> ImapConfiguration {
+        return ImapConfiguration(
             hostname: "imap.gmail.com",
             port: 993,
             login: login,
@@ -98,14 +98,14 @@ extension Configuration {
     }
 }
 
-extension Configuration {
+extension ImapConfiguration {
     /// Retrieve pre-configured configuration for Yahoo.
     ///
     /// - parameters:
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
-    public static func yahoo(login: String, password: PasswordType) -> Configuration {
-        return Configuration(
+    public static func yahoo(login: String, password: PasswordType) -> ImapConfiguration {
+        return ImapConfiguration(
             hostname: "imap.mail.yahoo.com",
             port: 993,
             login: login,
@@ -117,14 +117,14 @@ extension Configuration {
     }
 }
 
-extension Configuration {
+extension ImapConfiguration {
     /// Retrieve pre-configured configuration for iCloud.
     ///
     /// - parameters:
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
-    public static func icloud(login: String, password: String) -> Configuration {
-        return Configuration(
+    public static func icloud(login: String, password: String) -> ImapConfiguration {
+        return ImapConfiguration(
             hostname: "imap.mail.me.com",
             port: 993,
             login: login,
@@ -136,14 +136,14 @@ extension Configuration {
     }
 }
 
-extension Configuration {
+extension ImapConfiguration {
     /// Retrieve pre-configured configuration for Outlook.
     ///
     /// - parameters:
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
-    public static func outlook(login: String, password: String) -> Configuration {
-        return Configuration(
+    public static func outlook(login: String, password: String) -> ImapConfiguration {
+        return ImapConfiguration(
             hostname: "imap-mail.outlook.com",
             port: 993,
             login: login,
@@ -155,14 +155,14 @@ extension Configuration {
     }
 }
 
-extension Configuration {
+extension ImapConfiguration {
     /// Retrieve pre-configured configuration for Aol.
     ///
     /// - parameters:
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
-    public static func aol(login: String, password: String) -> Configuration {
-        return Configuration(
+    public static func aol(login: String, password: String) -> ImapConfiguration {
+        return ImapConfiguration(
             hostname: "imap.aol.com",
             port: 993,
             login: login,
@@ -174,7 +174,7 @@ extension Configuration {
     }
 }
 
-extension Configuration: CustomStringConvertible {
+extension ImapConfiguration: CustomStringConvertible {
     public var description: String {
         return "\(login)@\(hostname)"
     }

@@ -124,7 +124,7 @@ extension SearchFilter: CustomStringConvertible {
 // MARK: Libetpan conformance
 
 private extension SearchKind {
-    func unreleasedImapSearchKey(_ configuration: Configuration) -> UnsafeMutablePointer<mailimap_search_key> {
+    func unreleasedImapSearchKey(_ configuration: ImapConfiguration) -> UnsafeMutablePointer<mailimap_search_key> {
         switch self {
         case .all:                              return mailimap_search_key_new_all()
         case .from(let value):                  return mailimap_search_key_new_from(value.unreleasedUTF8CString)
@@ -184,7 +184,7 @@ private extension SearchKind {
 }
 
 private extension SearchFilter {
-    func unreleasedImapSearchKey(_ configuration: Configuration) -> UnsafeMutablePointer<mailimap_search_key> {
+    func unreleasedImapSearchKey(_ configuration: ImapConfiguration) -> UnsafeMutablePointer<mailimap_search_key> {
         switch self {
         case .and(let lhs, let rhs): 	return mailimap_search_key_new_multiple([ lhs, rhs ].unreleasedClist { $0.unreleasedImapSearchKey(configuration) })
         case .or(let lhs, let rhs):     return mailimap_search_key_new_or(lhs.unreleasedImapSearchKey(configuration), rhs.unreleasedImapSearchKey(configuration))
