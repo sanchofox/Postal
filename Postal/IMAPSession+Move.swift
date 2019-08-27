@@ -26,6 +26,7 @@ import Foundation
 import libetpan
 
 extension IMAPSession {
+    /*
     func moveMessages(fromFolder: String, toFolder: String, uids: IndexSet) throws -> [Int: Int] {
         guard uids.count > 0 else { return [:] }
         
@@ -54,4 +55,5 @@ extension IMAPSession {
             return combined.union(result)
         }
     }
+ */
 }

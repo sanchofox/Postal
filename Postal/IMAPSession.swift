@@ -25,8 +25,6 @@
 import Swift
 import libetpan
 
-
-
 final class IMAPSession: Session {
     var session: Any
     var configuration: Configuration
@@ -251,8 +249,9 @@ final class IMAPSession: Session {
         serverIdentity = IMAPIdentity(dic)
     }
     
-    fileprivate func checkCertificateIfNeeded() throws{
-        guard configuration.checkCertificateEnabled else { return }
-        guard checkCertificate(imap.pointee.imap_stream, hostname: configuration.hostname) else { throw IMAPError.certificate.asPostalError }
+    fileprivate func checkCertificateIfNeeded() throws {
+        if !checkCertificateIfNeeded(with: imap.pointee.imap_stream) {
+            throw IMAPError.certificate.asPostalError
+        }
     }
 }

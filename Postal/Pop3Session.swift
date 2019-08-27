@@ -23,7 +23,7 @@ final class Pop3Session: Session {
         }
     }
     
-    private var pop3: UnsafeMutablePointer<mailpop3> {
+    var pop3: UnsafeMutablePointer<mailpop3> {
         get {
             return session as! UnsafeMutablePointer<mailpop3>
         }
@@ -113,9 +113,8 @@ final class Pop3Session: Session {
         }
     }
     
-    fileprivate func checkCertificateIfNeeded() throws{
-        guard configuration.checkCertificateEnabled else { return }
-        guard checkCertificate(pop3.pointee.pop3_stream, hostname: configuration.hostname) else {
+    fileprivate func checkCertificateIfNeeded() throws {
+        if !checkCertificateIfNeeded(with: pop3.pointee.pop3_stream) {
             throw Pop3Error.certificate.asPostalError
         }
     }

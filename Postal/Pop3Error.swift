@@ -16,6 +16,7 @@ enum Pop3Error {
 //    case parse
     case certificate
 //    case nonExistantFolder
+    case unsupported
 }
 
 extension Pop3Error: PostalErrorType {
@@ -27,6 +28,7 @@ extension Pop3Error: PostalErrorType {
 //        case .parse: return .parse
         case .certificate: return .certificate
 //        case .nonExistantFolder: return .nonExistantFolder
+        case .unsupported: return .unsupported
         }
     }
 }

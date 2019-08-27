@@ -31,6 +31,7 @@ public enum PostalError: Error {
     case parse
     case certificate
     case nonExistantFolder
+    case unsupported
 }
 
 extension PostalError: Equatable {
@@ -44,6 +45,7 @@ public func ==(lhs: PostalError, rhs: PostalError) -> Bool {
     case (.parse, .parse): return true
     case (.certificate, .certificate): return true
     case (.nonExistantFolder, .nonExistantFolder): return true
+    case (.unsupported, .unsupported): return true
     default: return false
     }
 }

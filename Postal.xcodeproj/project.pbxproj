@@ -15,6 +15,8 @@
 		0875B7242313DA8E004B0E81 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7222313DA8E004B0E81 /* Types.swift */; };
 		0875B7262313DB46004B0E81 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7252313DB46004B0E81 /* Protocols.swift */; };
 		0875B7272313DB46004B0E81 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875B7252313DB46004B0E81 /* Protocols.swift */; };
+		08A44F3E23153BE8000B0D8F /* Pop3Session+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A44F3D23153BE8000B0D8F /* Pop3Session+Fetch.swift */; };
+		08A44F3F23153BE8000B0D8F /* Pop3Session+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A44F3D23153BE8000B0D8F /* Pop3Session+Fetch.swift */; };
 		08C25D7823142F310065F6FB /* Logger+Pop3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7723142F310065F6FB /* Logger+Pop3.swift */; };
 		08C25D7923142F310065F6FB /* Logger+Pop3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7723142F310065F6FB /* Logger+Pop3.swift */; };
 		08C25D7B2314390A0065F6FB /* Pop3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7A2314390A0065F6FB /* Pop3Error.swift */; };
@@ -166,6 +168,7 @@
 		084D656A2313D49800FCC040 /* Pop3Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Session.swift; sourceTree = "<group>"; };
 		0875B7222313DA8E004B0E81 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		0875B7252313DB46004B0E81 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		08A44F3D23153BE8000B0D8F /* Pop3Session+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pop3Session+Fetch.swift"; sourceTree = "<group>"; };
 		08C25D7723142F310065F6FB /* Logger+Pop3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Pop3.swift"; sourceTree = "<group>"; };
 		08C25D7A2314390A0065F6FB /* Pop3Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Error.swift; sourceTree = "<group>"; };
 		980745401D63311D0021D60F /* IMAPSession+List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAPSession+List.swift"; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 		084D65692313D48C00FCC040 /* Session */ = {
 			isa = PBXGroup;
 			children = (
+				08A44F3D23153BE8000B0D8F /* Pop3Session+Fetch.swift */,
 				084D656A2313D49800FCC040 /* Pop3Session.swift */,
 			);
 			name = Session;
@@ -700,6 +704,7 @@
 				9812C3341D509B6400630D46 /* FetchResult.swift in Sources */,
 				9812C3381D509B6400630D46 /* IMAPIdentity.swift in Sources */,
 				9812C33D1D509B6400630D46 /* Logger+IMAP.swift in Sources */,
+				08A44F3F23153BE8000B0D8F /* Pop3Session+Fetch.swift in Sources */,
 				9812C3401D509B6900630D46 /* Util.swift in Sources */,
 				9812C3331D509B6400630D46 /* MailData+Decode.swift in Sources */,
 				9812C3291D509B6400630D46 /* ContentDisposition+Parsing.swift in Sources */,
@@ -758,6 +763,7 @@
 				F7F03C841D4BA5A90083397F /* IMAPFolder.swift in Sources */,
 				F7F03C7F1D4BA5A90083397F /* FetchResult.swift in Sources */,
 				F7F03EAD1D4BA5A90083397F /* MessageAttribute+Parsing.swift in Sources */,
+				08A44F3E23153BE8000B0D8F /* Pop3Session+Fetch.swift in Sources */,
 				F7F03C851D4BA5A90083397F /* IMAPIdentity.swift in Sources */,
 				F7F03EA61D4BA5A90083397F /* Libetpan+Util.swift in Sources */,
 				F7F03EB41D4BA5A90083397F /* Postal.swift in Sources */,

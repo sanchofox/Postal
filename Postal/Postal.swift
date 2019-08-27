@@ -26,7 +26,7 @@ import Foundation
 
 /// This class is the class where every request will be performed.
 open class Postal {
-    fileprivate let session: IMAPSession
+    fileprivate var session: Session
     fileprivate let queue: OperationQueue
     fileprivate let configuration: ImapConfiguration
 
@@ -79,8 +79,17 @@ public extension Postal {
     /// - parameters:
     ///     - completion: The completion handler to call when the request succeed or failed.
     func listFolders(_ completion: @escaping (Result<[Folder], PostalError>) -> ()) {
+        
+        guard let handler = session as? FolderHandler else {
+            let result: Result<[Folder], PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.listFolders()
+            try handler.listFolders()
         }, completion: completion)
     }
     
@@ -90,8 +99,16 @@ public extension Postal {
     ///   - folderName: the folder name.
     ///   - completion: The completion handler to call when request succeed or failed.
     func delete(folderNamed folderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.delete(folderNamed: folderName)
+            try handler.delete(folderNamed: folderName)
         }, completion: completion)
     }
     
@@ -101,8 +118,16 @@ public extension Postal {
     ///   - folderName: the folder name.
     ///   - completion: The completion handler to call when request succeed or failed.
     func create(folderNamed folderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.create(folderNamed: folderName)
+            try handler.create(folderNamed: folderName)
         }, completion: completion)
     }
     
@@ -113,8 +138,17 @@ public extension Postal {
     ///   - to: the new folder name.
     ///   - completion: The completion handler to call when request succeed or failed.
     func rename(folderNamed fromFolderName: String, to toFolderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+
         doAsync({
-            try self.session.rename(folderNamed: fromFolderName, to: toFolderName)
+            try handler.rename(folderNamed: fromFolderName, to: toFolderName)
         }, completion: completion)
     }
     
@@ -124,8 +158,16 @@ public extension Postal {
     ///   - folderName: the folder name to be subcribed.
     ///   - completion: The completion handler to call when request succeed or failed.
     func subscribe(folderNamed folderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.subscribe(folderNamed: folderName)
+            try handler.subscribe(folderNamed: folderName)
         }, completion: completion)
     }
     
@@ -135,8 +177,16 @@ public extension Postal {
     ///   - folderName: the folder name to unsubscribe.
     ///   - completion: The completion handler to call when request succeed or failed.
     func unsubscribe(folderNamed folderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.unsubscribe(folderNamed: folderName)
+            try handler.unsubscribe(folderNamed: folderName)
         }, completion: completion)
     }
     
@@ -146,8 +196,16 @@ public extension Postal {
     ///   - folderName: the folder name to expunge
     ///   - completion: The completion handler to call when request succeed or failed.
     func expunge(folderNamed folderName: String, completion: @escaping (Result<Void, PostalError>) -> ()) {
+        guard let handler = session as? FolderHandler else {
+            let result: Result<Void, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         doAsync({
-            try self.session.expunge(folderNamed: folderName)
+            try handler.expunge(folderNamed: folderName)
         }, completion: completion)
     }
 }
@@ -168,7 +226,14 @@ public extension Postal {
     func fetchLast(_ folder: String, last: UInt, flags: FetchFlag, extraHeaders: Set<String> = [], onMessage: @escaping (FetchResult) -> Void, onComplete: @escaping (PostalError?) -> Void) {
         assert(!folder.isEmpty, "folder parameter can't be empty")
         
-        iterateAsync({ try self.session.fetchLast(folder, last: last, flags: flags, extraHeaders: extraHeaders, handler: $0) },
+        guard let fetcher = session as? Fetcher else {
+            DispatchQueue.main.async {
+                onComplete(.unsupported)
+            }
+            return
+        }
+        
+        iterateAsync({ try fetcher.fetchLast(folder, last: last, flags: flags, extraHeaders: extraHeaders, handler: $0) },
             onItem: onMessage,
             onComplete: onComplete)
     }
@@ -184,8 +249,15 @@ public extension Postal {
     ///     - onComplete: The completion handler when the request is finished with or without an error.
     func fetchMessages(_ folder: String, uids: IndexSet, flags: FetchFlag, extraHeaders: Set<String> = [], onMessage: @escaping (FetchResult) -> Void, onComplete: @escaping (PostalError?) -> Void) {
         assert(!folder.isEmpty, "folder parameter can't be empty")
-
-        iterateAsync({ try self.session.fetchMessages(folder, set: .uid(uids), flags: flags, extraHeaders: extraHeaders, handler: $0) },
+        
+        guard let fetcher = session as? Fetcher else {
+            DispatchQueue.main.async {
+                onComplete(.unsupported)
+            }
+            return
+        }
+        
+        iterateAsync({ try fetcher.fetchMessages(folder, uids: uids, flags: flags, extraHeaders: extraHeaders, onMessage: $0) },
                      onItem: onMessage,
                      onComplete: onComplete)
     }
@@ -201,8 +273,15 @@ public extension Postal {
     func fetchAttachments(_ folder: String, uid: UInt, partId: String, onAttachment: @escaping (MailData) -> Void, onComplete: @escaping (PostalError?) -> Void) {
         assert(!folder.isEmpty, "folder parameter can't be empty")
         assert(!partId.isEmpty, "partId parameter can't be empty")
+        
+        guard let fetcher = session as? Fetcher else {
+            DispatchQueue.main.async {
+                onComplete(.unsupported)
+            }
+            return
+        }
 
-        iterateAsync({ try self.session.fetchParts(folder, uid: uid, partId: partId, handler: $0) },
+        iterateAsync({ try fetcher.fetchParts(folder, uid: uid, partId: partId, handler: $0) },
                      onItem: onAttachment,
                      onComplete: onComplete)
     }
@@ -220,9 +299,17 @@ public extension Postal {
     ///     - completion: The completion handler when the request is finished with or without an error.
     func search(_ folder: String, filter: SearchKind, completion: @escaping (Result<IndexSet, PostalError>) -> Void) {
         assert(!folder.isEmpty, "folder parameter can't be empty")
+        guard let finder = session as? Finder else {
+            let result: Result<IndexSet, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
+        
         
         doAsync({
-            try self.session.search(folder, filter: filter)
+            try finder.search(folder, filter: filter)
         }, completion: completion)
     }
 
@@ -234,9 +321,16 @@ public extension Postal {
     ///     - completion: The completion handler when the request is finished with or without an error.
     func search(_ folder: String, filter: SearchFilter, completion: @escaping (Result<IndexSet, PostalError>) -> Void) {
         assert(!folder.isEmpty, "folder parameter can't be empty")
+        guard let finder = session as? Finder else {
+            let result: Result<IndexSet, PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
         
         doAsync({
-            try self.session.search(folder, filter: filter)
+            try finder.search(folder, filter: filter)
         }, completion: completion)
     }
 }
@@ -256,9 +350,16 @@ public extension Postal {
     func moveMessages(fromFolder: String, toFolder: String, uids: IndexSet, completion: @escaping (Result<[Int: Int], PostalError>) -> Void) {
         assert(!fromFolder.isEmpty, "fromFolder parameter can't be empty")
         assert(!toFolder.isEmpty, "toFolder parameter can't be empty")
+        guard let handler = session as? FolderHandler else {
+            let result: Result<[Int: Int], PostalError> = .failure(.unsupported)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+            return
+        }
         
         doAsync({
-            try self.session.moveMessages(fromFolder: fromFolder, toFolder: toFolder, uids: uids)
+            try handler.moveMessages(fromFolder: fromFolder, toFolder: toFolder, uids: uids)
         }, completion: completion)
     }
 }

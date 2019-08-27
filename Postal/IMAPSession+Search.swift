@@ -238,7 +238,7 @@ public prefix func !(rhs: SearchKind) -> SearchFilter {
 
 // MARK: - IMAPSession+Search
 
-extension IMAPSession {
+extension IMAPSession: Finder {
     
     func search(_ folder: String, filter: SearchKind) throws -> IndexSet {
         return try search(folder, filter: .base(filter))

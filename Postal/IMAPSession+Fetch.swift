@@ -150,7 +150,8 @@ private class FetchContext {
     }
 }
 
-extension IMAPSession {
+extension IMAPSession: Fetcher {
+    
     func fetchLast(_ folder: String, last: UInt, flags: FetchFlag, extraHeaders: Set<String> = [], handler: @escaping (FetchResult) -> Void) throws {
         let info = try select(folder)
         
@@ -159,13 +160,14 @@ extension IMAPSession {
         
         let indexSet = IndexSet(location..<(location+length))
         
-        try fetchMessages(folder, set: .indexes(indexSet), flags: flags, extraHeaders: extraHeaders, handler: handler)
+        try fetchMessages(folder, uids: indexSet, flags: flags, extraHeaders: extraHeaders, onMessage: handler)
     }
     
-    func fetchMessages(_ folder: String, set: IMAPIndexes, flags: FetchFlag, extraHeaders: Set<String> = [], handler: @escaping (FetchResult) -> Void) throws {
+    func fetchMessages(_ folder: String, uids: IndexSet, flags: FetchFlag, extraHeaders: Set<String>, onMessage: @escaping (FetchResult) -> Void) throws {
+        let set = IMAPIndexes.indexes(uids)
         let info = try select(folder)
         
-        var context = FetchContext(flags: flags, handler: handler)
+        var context = FetchContext(flags: flags, handler: onMessage)
         mailimap_set_msg_att_handler(imap, { message, context in
             autoreleasepool {
                 guard let fetchContext = context?.assumingMemoryBound(to: FetchContext.self).pointee else { return }
@@ -179,7 +181,7 @@ extension IMAPSession {
             }
         }, &context)
         defer { mailimap_set_msg_att_handler(imap, nil, nil) }
-
+        
         let fetchType = flags.unreleasedFetchAttributeList(extraHeaders)
         defer { mailimap_fetch_type_free(fetchType) }
         
@@ -197,7 +199,7 @@ extension IMAPSession {
             givenIndexSet = indexSet
             fetchFunc = mailimap_fetch
         }
-
+        
         for indexSet in givenIndexSet.enumerate(batchSize: configuration.batchSize) {
             let imapSet = indexSet.unreleasedMailimapSet
             defer { mailimap_set_free(imapSet) }
@@ -211,7 +213,7 @@ extension IMAPSession {
             guard context.hasMoreMessage else { break }
         }
     }
-    
+
     // fetch a set of attachments from an email with given uid
     func fetchParts(_ folder: String, uid: UInt, partId: String, handler: @escaping (MailData) -> Void) throws {
         let info = try select(folder)
