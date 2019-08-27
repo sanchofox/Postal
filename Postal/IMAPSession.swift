@@ -23,6 +23,7 @@
 //
 
 import Swift
+import Foundation
 import libetpan
 
 final class IMAPSession: Session {

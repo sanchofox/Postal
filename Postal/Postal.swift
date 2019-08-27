@@ -28,7 +28,7 @@ import Foundation
 open class Postal {
     fileprivate var session: Session
     fileprivate let queue: OperationQueue
-    fileprivate let configuration: ImapConfiguration
+    fileprivate let configuration: Configuration
 
     /// Setting this variable will allow user to access to the internal logger.
     open var logger: Logger? {
@@ -40,14 +40,19 @@ open class Postal {
     ///
     /// - parameters
     ///     - configuration: The configuration of the new connection.
-    public init(configuration: ImapConfiguration) {
+    public init(configuration: Configuration) {
         let providerName = "\(configuration)".lowercased()
         queue = OperationQueue()
         queue.name = "com.postal.\(providerName)"
         queue.qualityOfService = .utility
         queue.maxConcurrentOperationCount = 1
         self.configuration = configuration
-        session = IMAPSession(imapConfiguration: configuration)
+        if let imapConfig = configuration as? ImapConfiguration {
+            session = IMAPSession(imapConfiguration: imapConfig)
+        }
+        else {
+            session = Pop3Session(pop3configuration: configuration as! Pop3Configuration)
+        }
     }
 }
 

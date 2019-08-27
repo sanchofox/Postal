@@ -79,11 +79,16 @@ extension LoginTableViewController {
 
 private extension LoginTableViewController {
     
-    func createConfiguration() throws -> ImapConfiguration {
+    func createConfiguration() throws -> Configuration {
         guard let email = emailTextField.text , !email.isEmpty else { throw LoginError.badEmail  }
         guard let password = passwordTextField.text , !password.isEmpty else { throw LoginError.badPassword }
         
         if let configuration = provider?.preConfiguration {
+            
+            if configuration is Pop3Configuration {
+                return Pop3Configuration(hostname: configuration.hostname, port: configuration.port, login: email, password: password, connectionType: configuration.connectionType, checkCertificateEnabled: configuration.checkCertificateEnabled, batchSize: configuration.batchSize)
+            }
+
             return ImapConfiguration(hostname: configuration.hostname, port: configuration.port, login: email, password: .plain(password), connectionType: configuration.connectionType, checkCertificateEnabled: configuration.checkCertificateEnabled)
         } else {
             guard let hostname = hostnameTextField.text , !hostname.isEmpty else { throw LoginError.badHostname }

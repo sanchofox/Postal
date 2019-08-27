@@ -23,7 +23,7 @@ public struct Pop3Configuration: Configuration {
     
     public let password: String
     
-    init(hostname: String, port: UInt16, login: String, password: String, connectionType: ConnectionType, checkCertificateEnabled: Bool, batchSize: Int) {
+    public init(hostname: String, port: UInt16, login: String, password: String, connectionType: ConnectionType, checkCertificateEnabled: Bool, batchSize: Int) {
         self.hostname = hostname
         self.port = port
         self.login = login
@@ -42,7 +42,11 @@ extension Pop3Configuration {
     ///     - login: The login of the user.
     ///     - password: The credential of the connection.
     public static func gmail(login: String, password: String) -> Pop3Configuration {
-        return Pop3Configuration(hostname: "pop.gmail.com", port: 995, login: login,  password: password, connectionType: .startTLS, checkCertificateEnabled: true, batchSize: 1000)
+        return Pop3Configuration(hostname: "pop.gmail.com", port: 995, login: login,  password: password, connectionType: .tls, checkCertificateEnabled: true, batchSize: 1000)
+    }
+    
+    public static func aruba(login: String, password: String) -> Pop3Configuration {
+        return Pop3Configuration(hostname: "pop3s.aruba.it", port: 995, login: login,  password: password, connectionType: .tls, checkCertificateEnabled: true, batchSize: 1000)
     }
 }
 

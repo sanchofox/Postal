@@ -9,13 +9,42 @@
 import UIKit
 import Postal
 
-enum MailProvider: Int {
+protocol MailProvider {
+    var hostname: String { get }
+    var preConfiguration: Configuration? { get }
+}
+
+enum Pop3MailProvider: Int, MailProvider {
+    case google
+    case aruba
+    
+    var hostname: String {
+        switch self {
+        case .google:
+            return "google.com"
+        case .aruba:
+            return "aruba.it"
+        }
+    }
+    
+    var preConfiguration: Configuration? {
+        switch self {
+        case .google:
+            return Pop3Configuration.gmail(login: "", password: "")
+        case .aruba:
+            return Pop3Configuration.aruba(login: "", password: "")
+        }
+    }
+}
+
+
+enum ImapMailProvider: Int, MailProvider {
     case icloud
     case google
     case yahoo
     case outlook
     case aol
-    
+
     var hostname: String {
         switch self {
         case .icloud: return "icloud.com"
@@ -26,13 +55,13 @@ enum MailProvider: Int {
         }
     }
     
-    var preConfiguration: ImapConfiguration? {
+    var preConfiguration: Configuration? {
         switch self {
-        case .icloud: return .icloud(login: "", password: "")
-        case .google: return .gmail(login: "", password: .plain(""))
-        case .yahoo: return .yahoo(login: "", password: .plain(""))
-        case .outlook: return .outlook(login: "", password: "")
-        case .aol: return .aol(login: "", password: "")
+        case .icloud: return ImapConfiguration.icloud(login: "", password: "")
+        case .google: return ImapConfiguration.gmail(login: "", password: .plain(""))
+        case .yahoo: return ImapConfiguration.yahoo(login: "", password: .plain(""))
+        case .outlook: return ImapConfiguration.outlook(login: "", password: "")
+        case .aol: return ImapConfiguration.aol(login: "", password: "")
         }
     }
 }
@@ -56,11 +85,18 @@ extension AddAccountTableViewController {
 extension AddAccountTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch (segue.identifier, segue.destination, sender) {
-        case (.some(loginSegueIdentifier), let vc as LoginTableViewController, let provider as Int):
-            vc.provider = MailProvider(rawValue: provider)
-        default: break
+        
+        if segue.identifier == loginSegueIdentifier {
+            let vc = segue.destination as? LoginTableViewController
+            if let prov = sender as? ImapMailProvider {
+                vc?.provider = prov
+            }
+            else if let prov = sender as? Pop3MailProvider {
+                vc?.provider = prov
+            }
+            
         }
+
     }
 }
 
@@ -69,11 +105,28 @@ extension AddAccountTableViewController {
 extension AddAccountTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let provider = MailProvider(rawValue: (indexPath as NSIndexPath).row) else { fatalError("Unknown provider") }
-        print("selected provider: \(provider)")
-        
-        performSegue(withIdentifier: loginSegueIdentifier, sender: provider.rawValue)
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        var provider: MailProvider?
+        
+        switch indexPath.section {
+        case 0:
+            guard let mProvider = ImapMailProvider(rawValue: indexPath.row) else {
+                fatalError("Unknown provider")
+            }
+            provider = mProvider
+
+        case 1:
+            guard let mProvider = Pop3MailProvider(rawValue: indexPath.row) else {
+                fatalError("Unknown provider")
+            }
+            provider = mProvider
+        default:
+            break
+        }
+        
+        performSegue(withIdentifier: loginSegueIdentifier, sender: provider)
+        
     }
 }

@@ -11,11 +11,9 @@ import libetpan
 
 enum Pop3Error {
     case undefined
-//    case connection
+    case connection
     case login(description: String)
-//    case parse
     case certificate
-//    case nonExistantFolder
     case unsupported
 }
 
@@ -23,7 +21,7 @@ extension Pop3Error: PostalErrorType {
     var asPostalError: PostalError {
         switch self {
         case .undefined: return .undefined
-//        case .connection: return .connection
+        case .connection: return .connection
         case .login(let description): return .login(description: description)
 //        case .parse: return .parse
         case .certificate: return .certificate
@@ -45,13 +43,43 @@ extension Pop3Error {
 extension Int {
     
     var toPop3Error: Pop3Error? {
-        //TODO: Inserire errori POp3
         switch self {
-        case MAILIMAP_NO_ERROR, MAILIMAP_NO_ERROR_AUTHENTICATED, MAILIMAP_NO_ERROR_NON_AUTHENTICATED: return nil
-        case MAILIMAP_ERROR_STREAM: return .undefined //.connection
-        case MAILIMAP_ERROR_PARSE: return .undefined //.parse
-        default: return .undefined
+        case MAILPOP3_NO_ERROR:
+            return nil
+        case MAILPOP3_ERROR_STREAM:
+            return .connection
+        case MAILPOP3_ERROR_BAD_USER, MAILPOP3_ERROR_BAD_PASSWORD:
+            return .login(description: "")
+
+            
+        case MAILPOP3_ERROR_SSL:
+            return .undefined
+        case MAILPOP3_ERROR_DENIED:
+            return .undefined
+        case MAILPOP3_ERROR_MEMORY:
+            return .undefined
+        case MAILPOP3_ERROR_BAD_STATE:
+            return .undefined
+        case MAILPOP3_ERROR_CANT_LIST:
+            return .undefined
+        case MAILPOP3_ERROR_QUIT_FAILED:
+            return .undefined
+        case MAILPOP3_ERROR_UNAUTHORIZED:
+            return .undefined
+        case MAILPOP3_ERROR_NO_SUCH_MESSAGE:
+            return .undefined
+        case MAILPOP3_ERROR_APOP_NOT_SUPPORTED:
+            return .undefined
+        case MAILPOP3_ERROR_CAPA_NOT_SUPPORTED:
+            return .undefined
+        case MAILPOP3_ERROR_CONNECTION_REFUSED:
+            return .undefined
+        case MAILPOP3_ERROR_STLS_NOT_SUPPORTED:
+            return .undefined
+        default:
+            return .undefined
         }
+
     }
 }
 

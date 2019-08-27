@@ -7,6 +7,7 @@
 //
 
 import Swift
+import Foundation
 import libetpan
 
 final class Pop3Session: Session {
@@ -41,6 +42,7 @@ final class Pop3Session: Session {
         
         let _bodyProgress: Progress = { _,_,_  in }
         mailpop3_set_progress_callback(pop3, _bodyProgress, nil)
+        
     }
     
     convenience init(pop3configuration: Pop3Configuration) {
@@ -56,6 +58,7 @@ final class Pop3Session: Session {
     }
 
     func connect(timeout: TimeInterval) throws {
+
         mailpop3_set_timeout(pop3, Int(timeout))
 
         switch configuration.connectionType {
@@ -69,7 +72,7 @@ final class Pop3Session: Session {
             
         case .startTLS:
             try mailpop3_socket_connect(pop3, configuration.hostname, configuration.port).toPop3Error?.check()
-            
+
             try mailpop3_socket_starttls(pop3).toPop3Error?.check()
             
             try checkCertificateIfNeeded()

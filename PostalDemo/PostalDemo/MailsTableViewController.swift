@@ -10,7 +10,7 @@ import UIKit
 import Postal
 
 class MailsTableViewController: UITableViewController {
-    var configuration: ImapConfiguration!
+    var configuration: Configuration!
     
     fileprivate lazy var postal: Postal = Postal(configuration: self.configuration)
     fileprivate var messages: [FetchResult] = []
@@ -27,7 +27,8 @@ extension MailsTableViewController {
         postal.connect(timeout: Postal.defaultTimeout, completion: { [weak self] result in
             switch result {
             case .success: // Fetch 50 last mails of the INBOX
-                self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders ], onMessage: { message in
+                print("SUCCESS!")
+                /*self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders ], onMessage: { message in
                     self?.messages.insert(message, at: 0)
                     
                     }, onComplete: { error in
@@ -36,10 +37,10 @@ extension MailsTableViewController {
                         } else {
                             self?.tableView.reloadData()
                         }
-                })
+                })*/
 
             case .failure(let error):
-                self?.showAlertError("Connection error", message: (error as NSError).localizedDescription)
+                self?.showAlertError("Connection error", message: (error as NSError).localizedDescription + ": \(error.toString)")
             }
         })
     }

@@ -32,6 +32,25 @@ public enum PostalError: Error {
     case certificate
     case nonExistantFolder
     case unsupported
+    
+    public var toString: String {
+        switch self {
+        case .undefined:
+            return "undefined"
+        case .connection:
+            return "connection"
+        case .login(let description):
+            return "login (\(description))"
+        case .parse:
+            return "parse"
+        case .certificate:
+            return "certificate"
+        case .nonExistantFolder:
+            return "nonExistantFolder"
+        case .unsupported:
+            return "unsupported"
+        }
+    }
 }
 
 extension PostalError: Equatable {
