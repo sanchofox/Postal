@@ -28,16 +28,18 @@ extension MailsTableViewController {
             switch result {
             case .success: // Fetch 50 last mails of the INBOX
                 print("SUCCESS!")
-                /*self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders ], onMessage: { message in
-                    self?.messages.insert(message, at: 0)
+                self?.postal.fetchLast("INBOX", last: 50, flags: [ .fullHeaders, .internalDate ], onMessage: { message in
+                    
+                    
+                    //self?.messages.insert(message, at: 0)
                     
                     }, onComplete: { error in
                         if let error = error {
-                            self?.showAlertError("Fetch error", message: (error as NSError).localizedDescription)
+                            self?.showAlertError("Fetch error", message: (error as NSError).localizedDescription + ": \(error.toString)")
                         } else {
                             self?.tableView.reloadData()
                         }
-                })*/
+                })
 
             case .failure(let error):
                 self?.showAlertError("Connection error", message: (error as NSError).localizedDescription + ": \(error.toString)")

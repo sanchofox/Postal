@@ -21,6 +21,8 @@
 		08C25D7923142F310065F6FB /* Logger+Pop3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7723142F310065F6FB /* Logger+Pop3.swift */; };
 		08C25D7B2314390A0065F6FB /* Pop3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7A2314390A0065F6FB /* Pop3Error.swift */; };
 		08C25D7C2314390A0065F6FB /* Pop3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C25D7A2314390A0065F6FB /* Pop3Error.swift */; };
+		08C61DA52316820900ECDFE0 /* Pop3+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C61DA42316820900ECDFE0 /* Pop3+Parsing.swift */; };
+		08C61DA62316820900ECDFE0 /* Pop3+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C61DA42316820900ECDFE0 /* Pop3+Parsing.swift */; };
 		980745411D63311D0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		980745421D6331AC0021D60F /* IMAPSession+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980745401D63311D0021D60F /* IMAPSession+List.swift */; };
 		9812C31F1D50959500630D46 /* Postal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9812C31E1D50959500630D46 /* Postal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -171,6 +173,8 @@
 		08A44F3D23153BE8000B0D8F /* Pop3Session+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pop3Session+Fetch.swift"; sourceTree = "<group>"; };
 		08C25D7723142F310065F6FB /* Logger+Pop3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Pop3.swift"; sourceTree = "<group>"; };
 		08C25D7A2314390A0065F6FB /* Pop3Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop3Error.swift; sourceTree = "<group>"; };
+		08C61DA42316820900ECDFE0 /* Pop3+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pop3+Parsing.swift"; sourceTree = "<group>"; };
+		08C61E082316BABD00ECDFE0 /* libMailCore-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMailCore-ios.a"; path = "../../../libMailCore-ios.a"; sourceTree = "<group>"; };
 		980745401D63311D0021D60F /* IMAPSession+List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAPSession+List.swift"; sourceTree = "<group>"; };
 		9812C31C1D50959500630D46 /* Postal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Postal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9812C31E1D50959500630D46 /* Postal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Postal.h; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				084D65692313D48C00FCC040 /* Session */,
+				08C61DA323167F1100ECDFE0 /* Parsing */,
 				08C25D7A2314390A0065F6FB /* Pop3Error.swift */,
 				08C25D7723142F310065F6FB /* Logger+Pop3.swift */,
 			);
@@ -287,6 +292,22 @@
 				084D656A2313D49800FCC040 /* Pop3Session.swift */,
 			);
 			name = Session;
+			sourceTree = "<group>";
+		};
+		08C61DA323167F1100ECDFE0 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				08C61DA42316820900ECDFE0 /* Pop3+Parsing.swift */,
+			);
+			name = Parsing;
+			sourceTree = "<group>";
+		};
+		08C61E072316BABC00ECDFE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08C61E082316BABD00ECDFE0 /* libMailCore-ios.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9807453F1D6331020021D60F /* Session */ = {
@@ -358,6 +379,7 @@
 				9812C31D1D50959500630D46 /* Postal-macOS */,
 				F7F03EF11D4BA5DB0083397F /* PostalTests */,
 				98DB00961CEC6983003CAABB /* Products */,
+				08C61E072316BABC00ECDFE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -610,7 +632,7 @@
 				TargetAttributes = {
 					9812C31B1D50959500630D46 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1020;
 					};
 					9852BA601D58ACE900EE46E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -700,6 +722,7 @@
 				F71325671D50CA84005DFC15 /* ImapConfiguration.swift in Sources */,
 				9812C3301D509B6400630D46 /* MessageHeader+Parsing.swift in Sources */,
 				9812C33F1D509B6900630D46 /* Libetpan+Util.swift in Sources */,
+				08C61DA62316820900ECDFE0 /* Pop3+Parsing.swift in Sources */,
 				9812C3321D509B6400630D46 /* MimeType+Parsing.swift in Sources */,
 				9812C3341D509B6400630D46 /* FetchResult.swift in Sources */,
 				9812C3381D509B6400630D46 /* IMAPIdentity.swift in Sources */,
@@ -759,6 +782,7 @@
 				F7F03EAB1D4BA5A90083397F /* MailPart+Parsing.swift in Sources */,
 				F7F03EA81D4BA5A90083397F /* Logger.swift in Sources */,
 				F7F03C7E1D4BA5A90083397F /* Extension+Parsing.swift in Sources */,
+				08C61DA52316820900ECDFE0 /* Pop3+Parsing.swift in Sources */,
 				F7F03EA91D4BA5A90083397F /* MailData+Decode.swift in Sources */,
 				F7F03C841D4BA5A90083397F /* IMAPFolder.swift in Sources */,
 				F7F03C7F1D4BA5A90083397F /* FetchResult.swift in Sources */,
@@ -820,6 +844,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -842,6 +867,8 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(inherited) $(SRCROOT)/dependencies/build/macos/include";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -849,6 +876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -869,6 +897,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(inherited) $(SRCROOT)/dependencies/build/macos/include";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

@@ -238,9 +238,13 @@ public extension Postal {
             return
         }
         
-        iterateAsync({ try fetcher.fetchLast(folder, last: last, flags: flags, extraHeaders: extraHeaders, handler: $0) },
-            onItem: onMessage,
-            onComplete: onComplete)
+        iterateAsync({
+            try fetcher.fetchLast(folder, last: last, flags: flags, extraHeaders: extraHeaders, handler: $0)
+        }, onItem: onMessage, onComplete: onComplete)
+        
+//        iterateAsync({ try fetcher.fetchLast(folder, last: last, flags: flags, extraHeaders: extraHeaders, handler: $0) },
+//            onItem: onMessage,
+//            onComplete: onComplete)
     }
     
     /// Fetch emails by uids in a given folder

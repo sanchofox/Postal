@@ -66,7 +66,7 @@ extension FetchFlag: CustomStringConvertible {
 private extension FetchFlag {
     func unreleasedFetchAttributeList(_ extraHeaders: Set<String>) -> UnsafeMutablePointer<mailimap_fetch_type> {
         typealias CreateAttribute = () -> UnsafeMutablePointer<mailimap_fetch_att>?
-        
+
         let flags: [(FetchFlag, CreateAttribute)] = [
             (.uid,              mailimap_fetch_att_new_uid),
             (.flags,            mailimap_fetch_att_new_flags),
